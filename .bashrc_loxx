@@ -1,0 +1,28 @@
+# ==================================
+# ==== Loxxlie's Custom .bashrc ====
+# ==================================
+
+# --== Basic Prompt ==--
+export PS_START='${debian_chroot:+($debian_chroot)}\[\033[38;5;255;1m\]\u@\h\[\033[00m\] : \[\033[38;5;255;1m\]\w\[\033[00m\]'
+export PS_END=' \n\[\033[38;5;229m\][\t]\[\033[00m\] $ '
+export PS1=$PS_START$PS_END
+
+# --== Bash-Git-Prompt ==--
+if [ ! -f ~/.bash-git-prompt/gitprompt.sh ]; then
+    rm -rf ~/.bash-git-prompt
+    git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
+fi
+GIT_PROMPT_ONLY_IN_REPO=1
+GIT_PROMPT_START=$PS_START
+GIT_PROMPT_END=$PS_END
+source ~/.bash-git-prompt/gitprompt.sh
+
+# --== fzf ==--
+if [ ! -f ~/.fzf.bash ]; then
+    rm -rf ~/.fzf
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+fi
+export FZF_DEFAULT_OPTS='--height 15%'
+# This line should get automatically added to .bashrc by the install script
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
