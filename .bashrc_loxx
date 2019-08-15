@@ -24,5 +24,7 @@ if [ ! -f ~/.fzf.bash ]; then
     ~/.fzf/install
 fi
 export FZF_DEFAULT_OPTS='--height 15%'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
 # This line should get automatically added to .bashrc by the install script
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
