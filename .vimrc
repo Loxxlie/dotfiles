@@ -21,6 +21,10 @@ set wildmenu       " visual autocomplete for command menu
 set lazyredraw     " redraw only when we need to
 set showmatch      " highlight matching [{()}]
 
+set breakindent                " enable word wrap indentation
+set showbreak=>>               " print >> on word wrapped lines
+set breakindentopt=shift:2,sbr " shift word wrap in by 2 characters
+							   " and print showbreak at beginning of line
 let g:netrw_liststyle = 3    " default to verbose explorer view
 let g:netrw_banner = 0       " remove explorer banner
 let g:netrw_browse_split = 4 " open files in previous window
@@ -50,16 +54,20 @@ noremap E $
 noremap $ <nop>
 noremap ^ <nop>
 
+" map reflow to Q, overwriting :Ex mode shortcut
+nnoremap Q gq
+set textwidth=79 " set reflow max line width to 79
+
 " Tab/Window Navigation ------------------------------------------------------
 " the following make it easy to navigate around windows
-nnoremap g<Right> <C-w><Right>
-nnoremap g<Left> <C-w><Left>
-nnoremap g<Up> <C-w><Up>
-nnoremap g<Down> <C-w><Down>
+noremap <C-l> <C-w><Right>
+noremap <C-h> <C-w><Left>
+noremap <C-k> <C-w><Up>
+noremap <C-j> <C-w><Down>
 
 " the following makes it easy to open and close windows
-nnoremap gs :vnew<CR>
-nnoremap gS <C-w>q
+nnoremap gS :vnew<CR>
+nnoremap gs <C-w>q
 
 " Leader/Misc Shortcuts ------------------------------------------------------
 let mapleader=","   " leader is comma
@@ -71,7 +79,13 @@ inoremap jk <esc>
 nnoremap <leader>f :FZF<CR>
 
 " ,F launches fuzzy file finder in home dir
-nnoremap <leader>F :FZF<CR>
+nnoremap <leader>F :FZF ~<CR>
+
+" ,cd sets the global current directory to current file
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" ,wcd sets the window current directory to the current file
+nnoremap <leader>wcd :lcd %:p:h<CR>:pwd<CR>
 
 " Vim-Go Settings ------------------------------------------------------------
 " Go indentation settings
@@ -95,4 +109,17 @@ let g:go_auto_sameids = 1
 
 " auto-import dependencies
 let g:go_fmt_command = "goimports"
+
+" run unit tests
+au FileType go nmap <F9> :GoCoverageToggle -short<CR>
+
+" show type information in status line
+let g:go_auto_type_info = 1
+
+" Go Macros
+au FileType go noremap xnewtest :r ~/.vim/snippets/go/newtest.go
+au FileType go noremap xtesttop :r ~/.vim/snippets/go/testtop.go
+au FileType go noremap xasserteq :r ~/.vim/snippets/go/asserteq.go
+au FileType go noremap xassertn :r ~/.vim/snippets/go/assertn.go
+au FileType go noremap xassertnn :r ~/.vim/snippets/go/assertnn.go
 
