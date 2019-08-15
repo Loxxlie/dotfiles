@@ -117,9 +117,9 @@ au FileType go nmap <F9> :GoCoverageToggle -short<CR>
 let g:go_auto_type_info = 1
 
 " Go Macros
-au FileType go noremap xnewtest :r ~/.vim/snippets/go/newtest.go
-au FileType go noremap xtesttop :r ~/.vim/snippets/go/testtop.go
-au FileType go noremap xasserteq :r ~/.vim/snippets/go/asserteq.go
-au FileType go noremap xassertn :r ~/.vim/snippets/go/assertn.go
-au FileType go noremap xassertnn :r ~/.vim/snippets/go/assertnn.go
+au FileType go noremap xnewtest :r ~/.vim/snippets/go/newtest.go<CR>
+au FileType go noremap xtesttop :r ~/.vim/snippets/go/testtop.go<CR>
+au FileType go noremap xasserteq :r ~/.vim/snippets/go/asserteq.go<CR>
+au FileType go noremap xassertn :r ~/.vim/snippets/go/assertn.go<CR>
+au FileType go noremap xassertnn :r ~/.vim/snippets/go/assertnn.go<CR>
 

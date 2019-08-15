@@ -1,5 +1,3 @@
-import "testing"
-
 func ____(t *testing.T) {
 	cases := []struct {
 		name string
@@ -11,4 +9,3 @@ func ____(t *testing.T) {
 		})
 	}
 }
-
