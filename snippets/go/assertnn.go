@@ -1,1 +1,1 @@
-assert.NotNilf(t, got, errNotNil, got)
+assert.NotNilf(t, got, errNotNilStr, got)

@@ -1,5 +1,16 @@
-" Theme/Color ----------------------------------------------------------------
 syntax enable					  " enable syntax processing
+
+" Vim Plugins ----------------------------------------------------------------
+call plug#begin('~/.config/nvim/plugged')
+Plug '~/.fzf'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'lifepillar/vim-solarized8'
+Plug 'dense-analysis/ale'
+call plug#end()
+
+" Theme/Color ----------------------------------------------------------------
 set background=dark               " use dark background for solarized8
 set termguicolors                 " use true colors
 colorscheme solarized8            " set colorscheme
@@ -123,3 +134,7 @@ au FileType go noremap xasserteq :r ~/.vim/snippets/go/asserteq.go<CR>
 au FileType go noremap xassertn :r ~/.vim/snippets/go/assertn.go<CR>
 au FileType go noremap xassertnn :r ~/.vim/snippets/go/assertnn.go<CR>
 
+" Error and warning signs.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1

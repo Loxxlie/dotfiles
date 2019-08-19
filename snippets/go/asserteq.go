@@ -1,1 +1,1 @@
-assert.Equalf(t, got, want, errGotWant, got, want)
+assert.Equalf(t, want, got, errWantGotStr, want, got)
