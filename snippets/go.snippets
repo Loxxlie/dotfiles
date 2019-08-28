@@ -1,0 +1,31 @@
+snippet tae "testify/assert.Equalf"
+	assert.Equalf(t, $1, $2, "want %v, got %v", $1, $2)
+endsnippet
+
+snippet tan "testify/assert.Nilf"
+	assert.Nilf(t, $1, "should be nil, got %v", $1)
+
+snippet tann "testify/assert.NotNilf"
+	assert.NotNil(t, $1, "shouldn't be nil, but was")
+
+snippet tap "testify/assert.Panics"
+	assert.Panics(t, func() { $1 }, "should panic, but doesn't")
+
+snippet tanp "testify/assert.NotPanics"
+	assert.NotPanics(t, func() { $1 }, "panics, but shouldn't")
+
+snippet tc "Test with testcases"
+	func Test$1(t *testing.T) {
+		cases := []struct{
+			name string
+			$2
+		}{
+			{$3},
+		}
+
+		for _, tc := range cases {
+			t.Run(tc.name, func(t *testing.T) {
+				$4
+			})
+		}
+	}
