@@ -1,31 +1,53 @@
-snippet tae "testify/assert.Equalf"
-	assert.Equalf(t, $1, $2, "want %v, got %v", $1, $2)
+snippet tae "testify/assert.Equalf" b
+assert.Equalf(t, $1, $2, "want %v, got %v", $1, $2)
 endsnippet
 
-snippet tan "testify/assert.Nilf"
-	assert.Nilf(t, $1, "should be nil, got %v", $1)
+snippet tan "testify/assert.Nilf" b
+assert.Nilf(t, $1, "should be nil, got %v", $1)
+endsnippet
 
-snippet tann "testify/assert.NotNilf"
-	assert.NotNil(t, $1, "shouldn't be nil, but was")
+snippet tann "testify/assert.NotNilf" b
+assert.NotNil(t, $1, "shouldn't be nil, but was")
+endsnippet
 
-snippet tap "testify/assert.Panics"
-	assert.Panics(t, func() { $1 }, "should panic, but doesn't")
+snippet tap "testify/assert.Panics" b
+assert.Panics(t, func() { $1 }, "should panic, but doesn't")
+endsnippet
 
-snippet tanp "testify/assert.NotPanics"
-	assert.NotPanics(t, func() { $1 }, "panics, but shouldn't")
+snippet tanp "testify/assert.NotPanics" b
+assert.NotPanics(t, func() { $1 }, "panics, but shouldn't")
+endsnippet
 
-snippet tc "Test with testcases"
-	func Test$1(t *testing.T) {
-		cases := []struct{
-			name string
-			$2
-		}{
-			{$3},
-		}
-
-		for _, tc := range cases {
-			t.Run(tc.name, func(t *testing.T) {
-				$4
-			})
-		}
+snippet tc "Test with testcases" b
+func Test$1(t *testing.T) {
+	cases := []struct{
+		name string
+		$2
+	}{
+		{$3},
 	}
+
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			$4
+		})
+	}
+}
+endsnippet
+
+snippet tnc "Test without testcases" b
+func Test$1(t *testing.T){
+	$2
+}
+endsnippet
+
+snippet handler "func(ResponseWriter, Request)"
+func(w http.ResponseWriter, r *http.Request) {
+	$1
+}
+endsnippet
+
+snippet todo "TODO text"
+TODO: $1 [`date -I`, Ethan Lie]
+endsnippet
+	
