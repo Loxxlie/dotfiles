@@ -37,7 +37,10 @@ ins_configs ()
     cp configs/init.vim ~/.config/nvim/init.vim
     cp configs/.vimrc ~/.vimrc
 
-    rm -r ~/.vim/UltiSnips
+    if [ -d ~/.vim/UltiSnips ]; then
+        rm -r ~/.vim/UltiSnips
+    fi
+    mkdir -r ~/.vim/UltiSnips
     cp -r snippets ~/.vim/UltiSnips
 }
 
@@ -63,6 +66,18 @@ if [ ! -f ~/.fzf.bash ]; then
     echo -e "${GREEN}${CHECK}${NC} fzf installed!"
 else
     echo -e "${GREEN}${CHECK}${NC} fzf already installed!"
+fi
+
+if [[ $(which go) ]]; then
+    echo -e "${GREEN}${CHECK}${NC} Golang already installed!"
+else
+    echo -e "${RED}${CROSS}${NC} Golang is not installed. See: https://golang.org/doc/install"
+fi
+
+if [[ $(which nvim) ]]; then
+    echo -e "${GREEN}${CHECK}${NC} neovim already installed!"
+else
+    echo -e "${RED}${CROSS}${NC} neovim is not installed. See: https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-source"
 fi
 
 echo -e "${GREEN}${MARK}${NC} Installing config files..."
