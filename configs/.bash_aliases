@@ -7,3 +7,6 @@ alias gits='git status'
 
 # Editor
 alias nv="nvim"
+
+# Custom Scripts
+alias tmuxkbs="~/myscripts/help_tmux_kbs.sh"

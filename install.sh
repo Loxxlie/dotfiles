@@ -36,11 +36,12 @@ ins_configs ()
     cp configs/.bashrc_loxx ~/.bashrc_loxx
     cp configs/init.vim ~/.config/nvim/init.vim
     cp configs/.vimrc ~/.vimrc
+    cp -r scripts/ ~/myscripts
 
     if [ -d ~/.vim/UltiSnips ]; then
         rm -r ~/.vim/UltiSnips
     fi
-    mkdir -r ~/.vim/UltiSnips
+    mkdir -p ~/.vim/UltiSnips
     cp -r snippets ~/.vim/UltiSnips
 }
 
