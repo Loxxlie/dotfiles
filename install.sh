@@ -36,6 +36,7 @@ ins_configs ()
     cp configs/.bashrc_loxx ~/.bashrc_loxx
     cp configs/init.vim ~/.config/nvim/init.vim
     cp configs/.vimrc ~/.vimrc
+    sudo cp configs/.tmux.conf ~/.tmux.conf
     cp -r scripts/ ~/myscripts
 
     if [ -d ~/.vim/UltiSnips ]; then
