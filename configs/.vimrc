@@ -1,4 +1,5 @@
 syntax enable					  " enable syntax processing
+set nocompatible
 let g:python3_host_prog = '/usr/bin/python3.7'
 
 " Vim Plugins ----------------------------------------------------------------
@@ -10,13 +11,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'lifepillar/vim-solarized8'
 Plug 'dense-analysis/ale'
 Plug 'sebdah/vim-delve'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " Theme/Color ----------------------------------------------------------------
@@ -37,6 +35,7 @@ set number         " show line numbers
 set showcmd        " show command in bottom bar
 set cursorline     " highlight current line
 filetype indent on " load filetype-specific indent files
+filetype plugin on " enable filetyps plugins
 set wildmenu       " visual autocomplete for command menu
 set lazyredraw     " redraw only when we need to
 set showmatch      " highlight matching [{()}]
@@ -52,32 +51,49 @@ let g:netrw_banner = 0       " remove explorer banner
 let g:netrw_browse_split = 2 " open files in new vertical split
 let g:netrw_winsize = 10     " explorer takes 25% of window
 
-" this is supposed to fix closing netrw buffers
-autocmd FileType netrw setl bufhidden=delete
+" NERDTree -------------------------------------------------------------------
+let NERDTreeMapJumpNextSibling = ',j' " because I later use <C-J> I remap this
+let NERDTreeMapJumpPrevSibling = ',k' " because I later use <C-K> I remap this
+
+let NERDTreeShowHidden = 1 " show hidden files by default
+
+let NERDTreeWinPos = 'left' " open NERDTree on leftside always
+let NERDTreeMinimalMenu = 1 " use minimal menu
+
+let NERDTreeAutoDeleteBuffer = 1 " close buffers for files who are deleted or
+                                 " renamed
+
+" Terminal -------------------------------------------------------------------
+tnoremap <Esc> <C-\><C-n>
 
 " Searching ------------------------------------------------------------------
 set incsearch " search as characters are entered
 set hlsearch " highlight matches
+set path+=** " recursively search for anything
 
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
 " Movement -------------------------------------------------------------------
 " move vertically by visual line
-noremap j gj
-noremap k gk
+nnoremap j gj
+nnoremap k gk
+
+" swap record and back-word keys
+" I do this because lining up QWE for navigating words makes sense to me, and I
+" always miss the b key. I also do not use the record function very often
+nnoremap q b
+nnoremap b q
 
 " move to the beginning/end of a line
 " this wil overwrite two existing movement hotkeys
-noremap B ^
-noremap E $
+nnoremap Q ^
+nnoremap E $
 
 " $/^ won't do anything
-noremap $ <nop>
-noremap ^ <nop>
+nnoremap $ <nop>
+nnoremap ^ <nop>
 
-" map reflow to Q, overwriting :Ex mode shortcut
-nnoremap Q gq
 set textwidth=80 " set reflow max line width to 79
 
 " Tab/Window Navigation ------------------------------------------------------
@@ -102,6 +118,9 @@ nnoremap <leader>f :FZF<CR>
 
 " ,F launches fuzzy file finder in home dir
 nnoremap <leader>F :FZF ~<CR>
+
+" ,d toggles the NERDTree explorer
+nnoremap <leader>d :NERDTreeToggle<CR>
 
 " ,cd sets the global current directory to current file
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -157,75 +176,6 @@ let g:go_def_mapping_enabled = 0
 
 " use gopls
 let g:go_def_mode = "gopls"
-
-" Conqueror of Completion Settings --------------------------------------------
-" " Use tab for trigger completion with characters ahead and navigate.
-" " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" 
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-" 
-" " use <tab> and <S-tab> to navigate completion list
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" 
-" " Use <c-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
-" 
-" " Use `[c` and `]c` to navigate diagnostics
-" nmap <silent> [c <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]c <Plug>(coc-diagnostic-next)
-" 
-" " Remap keys for gotos
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-" 
-" " Use U to show documentation in preview window
-" nnoremap <silent> U :call <SID>show_documentation()<CR>
-" 
-" " Remap for rename current word
-" nmap <leader>rn <Plug>(coc-rename)
-" 
-" " Remap for format selected region
-" " vmap <leader>f  <Plug>(coc-format-selected)
-" " nmap <leader>f  <Plug>(coc-format-selected)
-" "
-" " Show all diagnostics
-" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" " Manage extensions
-" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" " Show commands
-" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" " Find symbol of current document
-" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" " Search workspace symbols
-" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" " Do default action for next item.
-" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" " Do default action for previous item.
-" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" " Resume latest coc list
-" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-" let g:neosnippet#snippets_directory='~/.vim/snippets'
-
-" Deoplete --------------------------------------------------------------------
-" Use deoplete.
-" let g:deoplete#enable_at_startup = 1
-
-" set completeopt-=preview " remove the preview window
-
-" <TAB> completion
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " ==================== Completion + Snippet ====================
 " Ultisnips has native support for SuperTab. SuperTab does omnicompletion by
