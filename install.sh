@@ -43,7 +43,7 @@ ins_configs ()
         rm -r ~/.vim/UltiSnips
     fi
     mkdir -p ~/.vim/UltiSnips
-    cp -r snippets ~/.vim/UltiSnips
+    cp -r snippets/* ~/.vim/UltiSnips
 }
 
 if [ ! -f ~/.bash-git-prompt/gitprompt.sh ]; then

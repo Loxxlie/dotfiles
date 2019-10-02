@@ -59,9 +59,15 @@ let NERDTreeShowHidden = 1 " show hidden files by default
 
 let NERDTreeWinPos = 'left' " open NERDTree on leftside always
 let NERDTreeMinimalMenu = 1 " use minimal menu
+let NERDTreeMinimalUI = 1 " hide ?
+let NERDTreeDirArrows = 1 " hide nav instructions
 
 let NERDTreeAutoDeleteBuffer = 1 " close buffers for files who are deleted or
-                                 " renamed
+                                 " renamed'
+
+" start NERDTree on 'nv'
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Terminal -------------------------------------------------------------------
 tnoremap <Esc> <C-\><C-n>
@@ -76,23 +82,23 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 " Movement -------------------------------------------------------------------
 " move vertically by visual line
-nnoremap j gj
-nnoremap k gk
+noremap j gj
+noremap k gk
 
 " swap record and back-word keys
 " I do this because lining up QWE for navigating words makes sense to me, and I
 " always miss the b key. I also do not use the record function very often
-nnoremap q b
-nnoremap b q
+noremap q b
+noremap b q
 
 " move to the beginning/end of a line
 " this wil overwrite two existing movement hotkeys
-nnoremap Q ^
-nnoremap E $
+noremap Q ^
+noremap E $
 
 " $/^ won't do anything
-nnoremap $ <nop>
-nnoremap ^ <nop>
+noremap $ <nop>
+noremap ^ <nop>
 
 set textwidth=80 " set reflow max line width to 79
 
@@ -110,9 +116,6 @@ nnoremap gs <C-w>q
 " Leader/Misc Shortcuts ------------------------------------------------------
 let mapleader=","   " leader is comma
 
-" jk is escape
-inoremap jk <esc>
-
 " ,f launches fuzzy file finder in cwd
 nnoremap <leader>f :FZF<CR>
 
@@ -127,6 +130,13 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " ,wcd sets the window current directory to the current file
 nnoremap <leader>wcd :lcd %:p:h<CR>:pwd<CR>
+
+" ==================== Languages ====================
+" Proto ----------------------------------------------------------------------
+au FileType proto set expandtab
+au FileType proto set shiftwidth=4
+au FileType proto set softtabstop=4
+au FileType proto set tabstop=4
 
 " Vim-Go Settings ------------------------------------------------------------
 " Go indentation settings
@@ -157,13 +167,6 @@ au FileType go nmap <F9> :GoCoverageToggle -short<CR>
 " show type information in status line
 let g:go_auto_type_info = 1
 
-" Go Macros
-au FileType go inoremap xnewtest <esc>:r ~/.vim/snippets/go/newtest.go<CR>wcw
-au FileType go inoremap xtesttop <esc>:r ~/.vim/snippets/go/testtop.go<CR>a
-au FileType go inoremap xasserteq <esc>:r ~/.vim/snippets/go/asserteq.go<CR>a
-au FileType go inoremap xassertn <esc>:r ~/.vim/snippets/go/assertn.go<CR>a
-au FileType go inoremap xassertnn <esc>:r ~/.vim/snippets/go/assertnn.go<CR>a
-
 " JSON stsruct tagging uses snake case
 let g:go_addtags_transform = "snakecase"
 
@@ -188,7 +191,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-
 
 " Error and warning signs -----------------------------------------------------
 let g:ale_sign_error = '⤫'
