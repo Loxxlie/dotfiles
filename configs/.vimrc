@@ -8,7 +8,6 @@ Plug '~/.fzf'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'lifepillar/vim-solarized8'
 Plug 'dense-analysis/ale'
 Plug 'sebdah/vim-delve'
 Plug 'ervandew/supertab'
@@ -20,9 +19,6 @@ call plug#end()
 " Theme/Color ----------------------------------------------------------------
 set background=dark               " use dark background for solarized8
 set termguicolors                 " use true colors
-colorscheme solarized8            " set colorscheme
-let g:airline_theme='solarized'   " set airline theme
-let g:airline_solarized_bg='dark' " set airline theme solarized to dark
 
 " Tabs and Spacing -----------------------------------------------------------
 set tabstop=4      " visual spaces per tab

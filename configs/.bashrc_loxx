@@ -36,3 +36,5 @@ fi
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
+# --== load pywal colors ==--
+[ -f ~/.cache/wal/sequences ] && (cat ~/.cache/wal/sequences &)
