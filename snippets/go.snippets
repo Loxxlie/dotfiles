@@ -1,13 +1,13 @@
-snippet tae "testify/assert.Equalf" b
-assert.Equalf(t, $1, $2, "want %v, got %v", $1, $2)
+snippet tae "testify/assert.Equal" b
+assert.Equal(t, $1, $2)
 endsnippet
 
-snippet tan "testify/assert.Nilf" b
-assert.Nilf(t, $1, "should be nil, got %v", $1)
+snippet tan "testify/assert.Nil" b
+assert.Nil(t, $1)
 endsnippet
 
-snippet tann "testify/assert.NotNilf" b
-assert.NotNil(t, $1, "shouldn't be nil, but was")
+snippet tann "testify/assert.NotNil" b
+assert.NotNil(t, $1)
 endsnippet
 
 snippet tap "testify/assert.Panics" b
@@ -20,14 +20,14 @@ endsnippet
 
 snippet taerr "testify/assert.Errorf" b
 if tc.$1 {
-	assert.Errorf(t, err, "wanted err, got %v", err)
+	assert.Error(t, err)
 } else {
-	assert.NoErrorf(t, err, "wanted no error, got %v", err)
+	assert.NoError(t, err)
 }
 endsnippet
 
 snippet tanerr "testify/assert/NoErrorf" b
-assert.NoErrorf(t, err, "wanted no error, got %v", err)
+assert.NoError(t, err)
 endsnippet
 
 snippet tc "Test with testcases" b
