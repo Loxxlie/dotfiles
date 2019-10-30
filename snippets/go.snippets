@@ -2,6 +2,14 @@ snippet tae "testify/assert.Equal" b
 assert.Equal(t, $1, $2)
 endsnippet
 
+snippet tat "testify/assert.True" b
+assert.True(t, $1)
+endsnippet
+
+snippet taf "testify/assert.False" b
+assert.False(t, $1)
+endsnippet
+
 snippet tan "testify/assert.Nil" b
 assert.Nil(t, $1)
 endsnippet
@@ -18,7 +26,7 @@ snippet tanp "testify/assert.NotPanics" b
 assert.NotPanics(t, func() { $1 }, "panics, but shouldn't")
 endsnippet
 
-snippet taerr "testify/assert.Errorf" b
+snippet taerr "testify/assert.Error" b
 if tc.$1 {
 	assert.Error(t, err)
 } else {
@@ -26,7 +34,7 @@ if tc.$1 {
 }
 endsnippet
 
-snippet tanerr "testify/assert/NoErrorf" b
+snippet tanerr "testify/assert/NoError" b
 assert.NoError(t, err)
 endsnippet
 
