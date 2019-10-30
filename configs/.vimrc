@@ -14,11 +14,16 @@ Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
+Plug 'joshdick/onedark.vim'
 call plug#end()
 
 " Theme/Color ----------------------------------------------------------------
-set background=dark               " use dark background for solarized8
 set termguicolors                 " use true colors
+
+" onedark colorscheme
+let g:onedark_hide_endofbuffer = 1
+let g:onedark_terminal_italics = 1
+colorscheme onedark
 
 " Tabs and Spacing -----------------------------------------------------------
 set tabstop=4      " visual spaces per tab
