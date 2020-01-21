@@ -42,6 +42,7 @@ set lazyredraw     " redraw only when we need to
 set showmatch      " highlight matching [{()}]
 set signcolumn=yes " Always show sign column
 set clipboard=unnamedplus " Use system clipboard
+set spell          " Spellcheck
 
 set breakindent                " enable word wrap indentation
 set showbreak=>>               " print >> on word wrapped lines
