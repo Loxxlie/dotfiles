@@ -10,3 +10,6 @@ alias nv="nvim"
 
 # Custom Scripts
 alias tmuxkbs="~/myscripts/help_tmux_kbs.sh"
+
+# Clear nvim swaps
+alias clrswp="rm ~/.local/share/nvim/swap/*"
