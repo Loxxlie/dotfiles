@@ -1,0 +1,43 @@
+---
+tags: [ window-manager ]
+---
+# Layouts
+$mod + e # Default
+$mod + s # Stacked
+$mod + w # Tabbed
+
+# Open Terminal
+$mod + Enter
+
+# Kill Window
+$mod + SHIFT + q
+
+# Exit i3
+$mod + SHIFT + e
+
+# Restart i3
+$mod + SHIFT + r
+
+# Navigation
+$mod + h # Left
+$mod + j # Down
+$mod + k # Up
+$mod + l # Right
+
+# Move Existing Panes
+$mod + SHIFT + h # Left
+$mod + SHIFT + j # Down
+$mod + SHIFT + k # Up
+$mod + SHIFT + l # Right
+
+# Toggle Tiling/Floating
+$mod + SHIFT + Space
+
+# Dmenu
+$mod + d
+
+# Full Screen
+$mod + f
+
+# Focus Parent
+$mod + a

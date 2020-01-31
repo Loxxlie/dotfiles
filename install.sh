@@ -37,8 +37,9 @@ ins_configs ()
     cp configs/init.vim ~/.config/nvim/init.vim
     cp configs/.vimrc ~/.vimrc
     cp configs/.tmux.conf ~/.tmux.conf
-    cp configs/i3.conf ~/.i3/config
+    cp configs/i3.conf ~/.config/i3/config
     cp -r scripts/ ~/myscripts
+    cp -r cheatsheets/* ~/cheat/cheatsheets/personal
 
     if [ -d ~/.vim/UltiSnips ]; then
         rm -r ~/.vim/UltiSnips

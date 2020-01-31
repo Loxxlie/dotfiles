@@ -10,9 +10,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dense-analysis/ale'
 Plug 'sebdah/vim-delve'
-Plug 'ervandew/supertab'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'ervandew/supertab'
+" Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdtree'
 Plug 'joshdick/onedark.vim'
 call plug#end()
@@ -43,6 +42,8 @@ set showmatch      " highlight matching [{()}]
 set signcolumn=yes " Always show sign column
 set clipboard=unnamedplus " Use system clipboard
 set spell          " Spellcheck
+set splitright
+set splitbelow
 
 set breakindent                " enable word wrap indentation
 set showbreak=>>               " print >> on word wrapped lines
@@ -52,6 +53,9 @@ let g:netrw_liststyle = 3    " default to verbose explorer view
 let g:netrw_banner = 0       " remove explorer banner
 let g:netrw_browse_split = 2 " open files in new vertical split
 let g:netrw_winsize = 10     " explorer takes 25% of window
+
+" vertical help window
+cnoreabbrev H vert h
 
 " NERDTree -------------------------------------------------------------------
 let NERDTreeMapJumpNextSibling = ',j' " because I later use <C-J> I remap this
@@ -94,7 +98,7 @@ noremap q b
 noremap b q
 
 " move to the beginning/end of a line
-" this wil overwrite two existing movement hotkeys
+" this will overwrite two existing movement hotkeys
 noremap Q ^
 noremap E $
 
@@ -157,6 +161,15 @@ let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 
+" terminal
+let g:go_term_enabled = 1
+let g:go_term_mode = "split"
+let g:go_term_height = 13
+
+" This is great to see the output of GoRun or if you're printing debug lines in
+" a GoTest but is otherwise annoying
+" let g:go_term_close_on_exit = 0
+
 " similar variable highlighting
 let g:go_auto_sameids = 1
 
@@ -185,14 +198,14 @@ let g:go_def_mode = "gopls"
 " ==================== Completion + Snippet ====================
 " Ultisnips has native support for SuperTab. SuperTab does omnicompletion by
 " pressing tab. I like this better than autocompletion, but it's still fast.
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"  
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>" 
+" let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"  
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>" 
 
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsEditSplit="vertical"
 
 " Error and warning signs -----------------------------------------------------
 let g:ale_sign_error = '⤫'
