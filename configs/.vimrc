@@ -1,6 +1,6 @@
 syntax enable					  " enable syntax processing
 set nocompatible
-let g:python3_host_prog = '/usr/bin/python3.7'
+let g:python3_host_prog = '/usr/bin/python3'
 
 " Vim Plugins ----------------------------------------------------------------
 call plug#begin('~/.config/nvim/plugged')
@@ -14,6 +14,7 @@ Plug 'sebdah/vim-delve'
 " Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdtree'
 Plug 'joshdick/onedark.vim'
+Plug 'tarekbecker/vim-yaml-formatter'
 call plug#end()
 
 " Theme/Color ----------------------------------------------------------------
@@ -29,6 +30,7 @@ set tabstop=4      " visual spaces per tab
 set softtabstop=4  " number of spaces in tab when editing
 set shiftwidth=4   " number of spaces from reindent ops (<<, >>)
 set expandtab      " tabs are spaces
+let g:yaml_formatter_indent_collection=1
 
 " UI Config ------------------------------------------------------------------
 set number         " show line numbers
@@ -168,7 +170,7 @@ let g:go_term_height = 13
 
 " This is great to see the output of GoRun or if you're printing debug lines in
 " a GoTest but is otherwise annoying
-" let g:go_term_close_on_exit = 0
+let g:go_term_close_on_exit = 0
 
 " similar variable highlighting
 let g:go_auto_sameids = 1
@@ -194,6 +196,9 @@ let g:go_def_mapping_enabled = 0
 
 " use gopls
 let g:go_def_mode = "gopls"
+
+" <Leader>d opens GoDef in new tab
+autocmd FileType go nmap <silent> <Leader>g <Plug>(go-def-tab)
 
 " ==================== Completion + Snippet ====================
 " Ultisnips has native support for SuperTab. SuperTab does omnicompletion by
