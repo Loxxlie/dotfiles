@@ -15,6 +15,7 @@ Plug 'sebdah/vim-delve'
 Plug 'scrooloose/nerdtree'
 Plug 'joshdick/onedark.vim'
 Plug 'tarekbecker/vim-yaml-formatter'
+Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 
 " Theme/Color ----------------------------------------------------------------
@@ -37,13 +38,13 @@ set number         " show line numbers
 set showcmd        " show command in bottom bar
 set cursorline     " highlight current line
 filetype indent on " load filetype-specific indent files
-filetype plugin on " enable filetyps plugins
+filetype plugin on " enable filetype plugins
 set wildmenu       " visual autocomplete for command menu
 set lazyredraw     " redraw only when we need to
 set showmatch      " highlight matching [{()}]
 set signcolumn=yes " Always show sign column
 set clipboard=unnamedplus " Use system clipboard
-set spell          " Spellcheck
+"set spell          " Spellcheck
 set splitright
 set splitbelow
 
@@ -188,7 +189,7 @@ let g:go_auto_type_info = 1
 let g:go_addtags_transform = "snakecase"
 
 " Dlv Settings
-let g:delve_backend = "native"
+" let g:delve_backend = "native"
 
 " disable vim-go :GoDef short cut (gd)
 " this is handled by LanguageClient
