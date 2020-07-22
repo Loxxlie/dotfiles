@@ -10,12 +10,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dense-analysis/ale'
 Plug 'sebdah/vim-delve'
-" Plug 'ervandew/supertab'
-" Plug 'SirVer/ultisnips'
+Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'joshdick/onedark.vim'
 Plug 'tarekbecker/vim-yaml-formatter'
 Plug 'ycm-core/YouCompleteMe'
+Plug 'sirver/ultisnips'
 call plug#end()
 
 " Theme/Color ----------------------------------------------------------------
@@ -206,12 +206,17 @@ autocmd FileType go nmap <silent> <Leader>g <Plug>(go-def-tab)
 " pressing tab. I like this better than autocompletion, but it's still fast.
 " let g:SuperTabDefaultCompletionType = "context"
 " let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"  
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>" 
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 " Error and warning signs -----------------------------------------------------
 let g:ale_sign_error = '⤫'
