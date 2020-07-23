@@ -4,18 +4,26 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 " Vim Plugins ----------------------------------------------------------------
 call plug#begin('~/.config/nvim/plugged')
-Plug '~/.fzf'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Cosmetics
+Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dense-analysis/ale'
-Plug 'sebdah/vim-delve'
-Plug 'ervandew/supertab'
+" File Search & Navigation
+Plug '~/.fzf'
 Plug 'scrooloose/nerdtree'
-Plug 'joshdick/onedark.vim'
-Plug 'tarekbecker/vim-yaml-formatter'
+" Autocomplete, Tab, Snippets
+Plug 'ervandew/supertab'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'sirver/ultisnips'
+" LANGUAGES
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'sebdah/vim-delve'
+" YAML
+Plug 'tarekbecker/vim-yaml-formatter'
+
 call plug#end()
 
 " Theme/Color ----------------------------------------------------------------
@@ -52,13 +60,16 @@ set breakindent                " enable word wrap indentation
 set showbreak=>>               " print >> on word wrapped lines
 set breakindentopt=shift:2,sbr " shift word wrap in by 2 characters
 							   " and print showbreak at beginning of line
+
+" These settings are irrelevant as long as we are using NerdTree, but I'll keep
+" them anyway
 let g:netrw_liststyle = 3    " default to verbose explorer view
 let g:netrw_banner = 0       " remove explorer banner
 let g:netrw_browse_split = 2 " open files in new vertical split
 let g:netrw_winsize = 10     " explorer takes 25% of window
 
 " vertical help window
-cnoreabbrev H vert h
+cnoreabbrev H vert h 
 
 " NERDTree -------------------------------------------------------------------
 let NERDTreeMapJumpNextSibling = ',j' " because I later use <C-J> I remap this
@@ -127,6 +138,7 @@ let mapleader=","   " leader is comma
 
 " ,f launches fuzzy file finder in cwd
 nnoremap <leader>f :FZF<CR>
+let g:fzf_action = { 'enter': 'vsplit' } " open files in vert split
 
 " ,F launches fuzzy file finder in home dir
 nnoremap <leader>F :FZF ~<CR>
@@ -198,18 +210,16 @@ let g:go_def_mapping_enabled = 0
 " use gopls
 let g:go_def_mode = "gopls"
 
-" <Leader>d opens GoDef in new tab
+" <Leader>g opens GoDef in new tab
 autocmd FileType go nmap <silent> <Leader>g <Plug>(go-def-tab)
 
 " ==================== Completion + Snippet ====================
-" Ultisnips has native support for SuperTab. SuperTab does omnicompletion by
-" pressing tab. I like this better than autocompletion, but it's still fast.
-" let g:SuperTabDefaultCompletionType = "context"
-" let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+" Remap YouCompleteMe navigation keys to <C-n>
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
+" Snippets expand on Tab
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
