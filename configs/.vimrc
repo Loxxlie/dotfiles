@@ -152,6 +152,27 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " ,wcd sets the window current directory to the current file
 nnoremap <leader>wcd :lcd %:p:h<CR>:pwd<CR>
 
+" Notes ---------------------------------------------------------------------
+" Auto-create parent directories if they don't exist on save
+function s:MkNonExDir(file)
+    if a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
+    endif
+endfunction
+augroup BWCCreateDir
+    autocmd!
+    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'))
+    autocmd FileWritePre * :call s:MkNonExDir(expand('<afile>'))
+augroup END
+
+nnoremap <leader>n :FZF ~/notes<CR>
+
+vnoremap <leader>s :w ~/notes/
+nnoremap <leader>s :w ~/notes/
+
 " ==================== Languages ====================
 " Proto ----------------------------------------------------------------------
 au FileType proto set expandtab
