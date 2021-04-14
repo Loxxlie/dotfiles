@@ -41,11 +41,11 @@ ins_configs ()
     cp -r scripts/ ~/myscripts
     cp -r cheatsheets/* ~/cheat/cheatsheets/personal
 
-    if [ -d ~/.vim/UltiSnips ]; then
-        rm -r ~/.vim/UltiSnips
+    if [ -d ~/.config/nvim/UltiSnips ]; then
+        rm -r ~/.config/nvim/UltiSnips
     fi
-    mkdir -p ~/.vim/UltiSnips
-    cp -r snippets/* ~/.vim/UltiSnips
+    mkdir -p ~/.config/nvim/UltiSnips
+    cp -r snippets/* ~/.config/nvim/UltiSnips
 }
 
 if [ ! -f ~/.bash-git-prompt/gitprompt.sh ]; then
