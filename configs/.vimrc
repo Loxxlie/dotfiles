@@ -97,6 +97,8 @@ set incsearch " search as characters are entered
 set hlsearch " highlight matches
 set path+=** " recursively search for anything
 
+set rtp+=~/.fzf " set fzf runtime directory
+
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
