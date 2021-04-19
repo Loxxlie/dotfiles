@@ -11,7 +11,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dense-analysis/ale'
 " File Search & Navigation
-Plug '~/.fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 " Autocomplete, Tab, Snippets
 Plug 'ervandew/supertab'
@@ -144,6 +145,12 @@ let g:fzf_action = { 'enter': 'vsplit' } " open files in vert split
 
 " ,F launches fuzzy file finder in home dir
 nnoremap <leader>F :FZF ~<CR>
+
+" ,g launches ag in cwd
+nnoremap <leader>g :Ag<CR>
+
+" ,G launches ag in home dir
+nnoremap <leader>G :Ag ~<CR>
 
 " ,d toggles the NERDTree explorer
 nnoremap <leader>d :NERDTreeToggle<CR>
