@@ -243,6 +243,9 @@ let g:go_def_mode = "gopls"
 " <Leader>g opens GoDef in new tab
 autocmd FileType go nmap <silent> <Leader>g <Plug>(go-def-tab)
 
+" extend default test timeout value
+let g:go_test_timeout = '30s'
+
 " ==================== Completion + Snippet ====================
 " Remap YouCompleteMe navigation keys to <C-n>
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
