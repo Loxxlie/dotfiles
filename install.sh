@@ -14,13 +14,6 @@ ins_bash_git_prmpt ()
     git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
 }
 
-# Install vim-plug for nvim
-ins_vim_plug ()
-{
-    curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-}
-
 # Install fzf
 ins_fzf ()
 {
@@ -32,20 +25,9 @@ ins_fzf ()
 # Copy Configs/Snippets
 ins_configs ()
 {
-    cp configs/.bash_aliases ~/.bash_aliases
-    cp configs/.bashrc_loxx ~/.bashrc_loxx
-    cp configs/init.vim ~/.config/nvim/init.vim
-    cp configs/.vimrc ~/.vimrc
-    cp configs/.tmux.conf ~/.tmux.conf
-    cp configs/i3.conf ~/.config/i3/config
-    cp -r scripts/ ~/myscripts
-    cp -r cheatsheets/* ~/cheat/cheatsheets/personal
-
-    if [ -d ~/.config/nvim/UltiSnips ]; then
-        rm -r ~/.config/nvim/UltiSnips
-    fi
-    mkdir -p ~/.config/nvim/UltiSnips
-    cp -r snippets/* ~/.config/nvim/UltiSnips
+    cp .bash_aliases ~/.bash_aliases
+    cp .bashrc_loxx ~/.bashrc_loxx
+    cp -r .config ~/.config
 }
 
 if [ ! -f ~/.bash-git-prompt/gitprompt.sh ]; then
@@ -54,14 +36,6 @@ if [ ! -f ~/.bash-git-prompt/gitprompt.sh ]; then
     echo -e "${GREEN}${CHECK}${NC} bash-git-prompt installed!"
 else
     echo -e "${GREEN}${CHECK}${NC} bash-git-prompt already installed!"
-fi
-
-if [ ! -f ~/.config/nvim/autoload/plug.vim ]; then
-    echo -e "${GREEN}${MARK}${NC} Installing vim-plug..."
-    ins_vim_plug
-    echo -e "${GREEN}${CHECK}${NC} vim-plug installed!"
-else
-    echo -e "${GREEN}${CHECK}${NC} vim-plug already installed!"
 fi
 
 if [ ! -f ~/.fzf.bash ]; then
