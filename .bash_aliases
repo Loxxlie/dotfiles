@@ -13,3 +13,6 @@ alias tmuxkbs="~/myscripts/help_tmux_kbs.sh"
 
 # Clear nvim swaps
 alias clrswp="rm ~/.local/share/nvim/swap/*"
+
+# Connect to local yugabyte DB
+alias localysqlsh="docker run --rm --network=\"host\" -it yugabytedb/yugabyte-client ysqlsh -h localhost -p 5433"

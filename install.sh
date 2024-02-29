@@ -27,7 +27,7 @@ ins_configs ()
 {
     cp .bash_aliases ~/.bash_aliases
     cp .bashrc_loxx ~/.bashrc_loxx
-    cp -r .config ~/.config
+    cp -rf .config ~/.config
 }
 
 if [ ! -f ~/.bash-git-prompt/gitprompt.sh ]; then
