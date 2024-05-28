@@ -22,6 +22,13 @@ ins_fzf ()
     ~/.fzf/install
 }
 
+# Install kube-ps1
+ins_kube_ps1 ()
+{
+    rm -rf ~/src/kube-ps1
+    git clone https://github.com/jonmosco/kube-ps1.git ~/src/kube-ps1 --depth=1
+}
+
 # Copy Configs/Snippets
 ins_configs ()
 {
@@ -44,6 +51,14 @@ if [ ! -f ~/.fzf.bash ]; then
     echo -e "${GREEN}${CHECK}${NC} fzf installed!"
 else
     echo -e "${GREEN}${CHECK}${NC} fzf already installed!"
+fi
+
+if [ ! -f ~/src/kube-ps1/kube-ps1.sh ]; then
+    echo -e "${GREEN}${MARK}${NC} Installing kube-ps1..."
+    ins_kube_ps1
+    echo -e "${GREEN}${CHECK}${NC} kube-ps1 installed!"
+else
+    echo -e "${GREEN}${CHECK}${NC} kube-ps1 already installed!"
 fi
 
 if [[ $(which go) ]]; then
