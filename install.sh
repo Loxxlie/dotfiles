@@ -35,7 +35,7 @@ ins_neovim ()
 {
     mkdir -p ~/.local/bin
     rm -f ~/.local/bin/nvim.appimange
-    curl -LO -o ~/.local/bin/nvim.appimage https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    curl -o ~/.local/bin/nvim.appimage -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
     chmod u+x ~/.local/bin/nvim.appimage
 }
 
