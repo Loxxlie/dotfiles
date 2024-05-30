@@ -29,6 +29,14 @@ ins_kube_ps1 ()
     git clone https://github.com/jonmosco/kube-ps1.git ~/src/kube-ps1 --depth=1
 }
 
+# Install neovim
+ins_neovim ()
+{
+    rm -f ~/bin/nvim.appimange
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -o ~/bin/nvim.appimage
+    chmod u+x ~/bin/nvim.appimage
+}
+
 # Copy Configs/Snippets
 ins_configs ()
 {
@@ -61,16 +69,18 @@ else
     echo -e "${GREEN}${CHECK}${NC} kube-ps1 already installed!"
 fi
 
+if [[ $(which nvim) ]]; then
+    echo -e "${GREEN}${CHECK}${NC} neovim already installed!"
+else
+    echo -e "${GREEN}${MARK}${NC} Installing neovim..."
+    ins_neovim
+    echo -e "${GREEN}${CHECK}${NC} neovim installed!"
+fi
+
 if [[ $(which go) ]]; then
     echo -e "${GREEN}${CHECK}${NC} Golang already installed!"
 else
     echo -e "${RED}${CROSS}${NC} Golang is not installed. See: https://golang.org/doc/install"
-fi
-
-if [[ $(which nvim) ]]; then
-    echo -e "${GREEN}${CHECK}${NC} neovim already installed!"
-else
-    echo -e "${RED}${CROSS}${NC} neovim is not installed. See: https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-source"
 fi
 
 echo -e "${GREEN}${MARK}${NC} Installing config files..."
