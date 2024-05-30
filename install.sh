@@ -25,6 +25,7 @@ ins_fzf ()
 # Install kube-ps1
 ins_kube_ps1 ()
 {
+    mkdir ~/src
     rm -rf ~/src/kube-ps1
     git clone https://github.com/jonmosco/kube-ps1.git ~/src/kube-ps1 --depth=1
 }
@@ -32,9 +33,10 @@ ins_kube_ps1 ()
 # Install neovim
 ins_neovim ()
 {
-    rm -f ~/bin/nvim.appimange
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -o ~/bin/nvim.appimage
-    chmod u+x ~/bin/nvim.appimage
+    mkdir -p ~/.local/bin
+    rm -f ~/.local/bin/nvim.appimange
+    curl -LO -o ~/.local/bin/nvim.appimage https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    chmod u+x ~/.local/bin/nvim.appimage
 }
 
 # Copy Configs/Snippets
@@ -42,6 +44,7 @@ ins_configs ()
 {
     cp .bash_aliases ~/.bash_aliases
     cp .bashrc_loxx ~/.bashrc_loxx
+    echo "[ -f ~/.bashrc_loxx ] && source ~/.bashrc_loxx" >> ~/.bashrc
     cp -Trf .config ~/.config
 }
 
