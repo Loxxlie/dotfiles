@@ -6,7 +6,8 @@ alias gt='git log --oneline -n 12'
 alias gits='git status'
 
 # Editor
-alias nv="nvim"
+alias nv="nvim.appimage"
+alias notes="nvim ~/Documents/LoxxNotes"
 
 # Custom Scripts
 alias tmuxkbs="~/myscripts/help_tmux_kbs.sh"
