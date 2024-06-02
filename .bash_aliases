@@ -7,7 +7,7 @@ alias gits='git status'
 
 # Editor
 alias nv="nvim.appimage"
-alias notes="nvim ~/Documents/LoxxNotes"
+alias fn="FZF_DEFAULT_COMMAND='' fzf --walker-root=$HOME/LoxxNotes | xargs -d$'\n' nvim"
 
 # Custom Scripts
 alias tmuxkbs="~/myscripts/help_tmux_kbs.sh"
