@@ -4,7 +4,10 @@ return {
         -- import nvim-lint
         local lint = require("lint")
         lint.linters_by_ft = {
-            go = { "golangcilint", "revive" },
+            go = {
+                -- "golangcilint", This shit is killing my computer.
+                "revive",
+            },
             proto = { "buf_lint" },
         }
 
