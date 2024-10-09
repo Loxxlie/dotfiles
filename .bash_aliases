@@ -6,7 +6,7 @@ alias gt='git log --oneline -n 12'
 alias gits='git status'
 
 # Editor
-alias nv="nvim.appimage"
+alias nv="nvim"
 alias fn="FZF_DEFAULT_COMMAND='' fzf --walker-root=$HOME/LoxxNotes | xargs -d$'\n' nvim"
 
 # Custom Scripts
