@@ -105,11 +105,34 @@ install_package "curl"
 # Install the primary packages
 print_info "Installing development environment packages..."
 install_package "neovim"
-install_package "zsh-git-prompt"
 install_package "fzf"
 install_package "kube-ps1"
 install_package "tmux"
 install_package "docker"
+install_package "python"
+
+# Install zsh-git-prompt
+install_zshgitprompt() {
+    # Define the Git repository URL and the target directory
+    REPO_URL="https://github.com/zsh-git-prompt/zsh-git-prompt.git"
+    TARGET_DIR=~/.zsh-git-prompt
+
+    # Check if the target directory already exists
+    if [ -d "$TARGET_DIR" ]; then
+      echo "zsh-git-prompt is already installed. Skipping installation."
+      exit 0
+    fi
+
+    # Clone the repository into the target directory
+    echo "Installing zsh-git-prompt..."
+    git clone "$REPO_URL" "$TARGET_DIR"
+
+    # Add the necessary line to the zshrc file
+    echo "Adding zsh-git-prompt to zshrc..."
+    echo "source ~/.zsh-git-prompt/zshrc.sh" >> ~/.zshrc
+}
+
+install_zshgitprompt
 
 # Install NVM and Node.js
 install_nvm() {
@@ -170,7 +193,7 @@ install_golang() {
 }
 
 install_golang
-install_package "golangci_lint"
+install_package "golangci-lint"
 
 # Install Obsidian
 install_obsidian() {
