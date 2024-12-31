@@ -120,7 +120,7 @@ install_zshgitprompt() {
     # Check if the target directory already exists
     if [ -d "$TARGET_DIR" ]; then
       echo "zsh-git-prompt is already installed. Skipping installation."
-      exit 0
+      return
     fi
 
     # Clone the repository into the target directory

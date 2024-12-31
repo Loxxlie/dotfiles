@@ -66,7 +66,7 @@ ins_configs ()
     cp .bash_aliases ~/.bash_aliases
     cp .bashrc_loxx ~/.bashrc_loxx
     echo "[ -f ~/.bashrc_loxx ] && source ~/.bashrc_loxx" >> ~/.bashrc
-    cp -Trf .config ~/.config
+    cp -Rf .config ~/.config
 }
 
 if [ ! -f ~/.bash-git-prompt/gitprompt.sh ]; then
