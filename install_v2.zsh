@@ -252,7 +252,7 @@ ins_configs ()
 {
     cp .bash_aliases ~/.bash_aliases
     cp .bashrc_loxx ~/.bashrc_loxx
-    cp -Rf .config ~/.config
+    cp -Rf .config ~
 }
 
 ins_configs
