@@ -45,9 +45,18 @@
       // Move up and down
       "j": "menu::SelectNext",
       "k": "menu::SelectPrevious",
-
-      "ctrl-l": "project_panel::ToggleFocus", // Vim-like.
+      // Easier Navigation.
+      "ctrl-l": "project_panel::ToggleFocus",
       "/": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
     }
   }
 ]
