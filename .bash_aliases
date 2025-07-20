@@ -20,10 +20,6 @@ alias gits='git status'
 
 # Editor
 alias nv="nvim"
-alias fn="FZF_DEFAULT_COMMAND='' fzf --walker-root=$HOME/LoxxNotes | xargs -d$'\n' nvim"
-
-# Custom Scripts
-alias tmuxkbs="~/myscripts/help_tmux_kbs.sh"
 
 # Clear nvim swaps
 alias clrswp="rm ~/.local/share/nvim/swap/*"

@@ -31,10 +31,41 @@ os_picker() {
   fi
 }
 
+# --- Generic function to append a line to the appropriate RC file ---
+append_line_to_rc_file() {
+  local line_to_add="$1"
+  local RC_FILE=""
+
+  if [[ "$SHELL" == */bash ]]; then
+    if [ -f "$HOME/.bashrc" ]; then
+      RC_FILE="$HOME/.bashrc"
+    elif [ -f "$HOME/.bash_profile" ]; then
+      RC_FILE="$HOME/.bash_profile"
+    else
+      RC_FILE="$HOME/.bashrc"
+      touch "$RC_FILE"
+    fi
+  elif [[ "$SHELL" == */zsh ]]; then
+    RC_FILE="$HOME/.zshrc"
+    touch "$RC_FILE"
+  else
+    echo "Warning: Could not determine shell configuration file for $SHELL. Please add the line manually: $line_to_add"
+    return 1
+  fi
+
+  # Use fgrep for fixed string matching and -x for whole line matching
+  if ! fgrep -q -x "${line_to_add}" "$RC_FILE"; then
+    echo "$line_to_add" >> "$RC_FILE"
+    echo "Added '$line_to_add' to $RC_FILE. Please restart your terminal or run 'source $RC_FILE' for changes to take effect."
+  else
+    echo "'$line_to_add' already found in $RC_FILE. No changes made."
+  fi
+}
+
 # --- Install Golang ---
 install_golang() {
   echo "Installing Golang..."
-  local GO_VERSION="1.24.5"
+  local GO_VERSION="1.24.5" # Using 1.24.5 as per the original script
   local OS=""
   local ARCH="amd64" # Assuming x86-64 architecture
 
@@ -72,43 +103,13 @@ install_golang() {
   echo "Golang installed."
 }
 
-# --- Add GOPATH to PATH ---
-add_gopath_to_path() {
-  echo "Adding GOPATH to PATH..."
-  local GOPATH_BIN="$(go env GOPATH)/bin"
-  local RC_FILE=""
-
-  if [[ "$SHELL" == */bash ]]; then
-    if [ -f "$HOME/.bashrc" ]; then
-      RC_FILE="$HOME/.bashrc"
-    elif [ -f "$HOME/.bash_profile" ]; then
-      RC_FILE="$HOME/.bash_profile"
-    else
-      RC_FILE="$HOME/.bashrc"
-      touch "$RC_FILE"
-    fi
-  elif [[ "$SHELL" == */zsh ]]; then
-    RC_FILE="$HOME/.zshrc"
-    touch "$RC_FILE"
-  else
-    echo "Warning: Could not determine shell configuration file for $SHELL. Please add GOPATH to your PATH manually."
-    return 1
-  fi
-
-  if ! grep -q "export PATH=.*${GOPATH_BIN}" "$RC_FILE"; then
-    echo "export PATH=\"\$PATH:${GOPATH_BIN}\"" >> "$RC_FILE"
-    echo "Added GOPATH to $RC_FILE. Please restart your terminal or run 'source $RC_FILE' for changes to take effect."
-  else
-    echo "GOPATH already found in $RC_FILE. No changes made."
-  fi
-}
-
 install_golang
-add_gopath_to_path
 
+# --- Install Gopls ---
 echo "Installing Gopls..."
 go install golang.org/x/tools/gopls@latest
 
+# --- Install GolangCI-Lint ---
 echo "Installing GolangCI-Lint..."
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
@@ -131,3 +132,21 @@ install_zed_config() {
 
 os_picker "install_zed_osx" "install_zed_linux"
 install_zed_config
+
+# --- Add GOPATH to PATH permanently ---
+add_gopath_to_path() {
+  echo "Adding GOPATH to PATH permanently..."
+  local GOPATH_BIN="$(go env GOPATH)/bin"
+  local PATH_LINE="export PATH=\"\$PATH:${GOPATH_BIN}\""
+  append_line_to_rc_file "$PATH_LINE"
+}
+
+add_gopath_to_path
+
+# --- Install aliases ---
+install_aliases() {
+    echo "Adding bash aliases..."
+    cp .bash_aliases ~/
+    local ADD_ALIASES="source ~/.bash_aliases"
+    append_line_to_rc_file "$ADD_ALIASES"
+}
