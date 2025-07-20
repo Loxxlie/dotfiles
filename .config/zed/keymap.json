@@ -1,0 +1,53 @@
+// documentation: https://zed.dev/docs/key-bindings
+// defaults: `zed: open default keymap`
+[
+  {
+    "context": "Editor && vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "q": "vim::PreviousWordStart",
+      "e": "vim::NextWordEnd",
+      "Q": "vim::StartOfLine",
+      "E": "vim::EndOfLine"
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      // "Leader" bindings.
+      "space e": "workspace::ToggleLeftDock",
+      "space f": "file_finder::Toggle",
+      "space s": "pane::DeploySearch"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      // https://github.com/zed-industries/zed/issues/4753
+      // https://github.com/zed-industries/zed/issues/4270
+      "escape": "project_panel::ToggleFocus",
+      // Opening in split not supported
+      // https://github.com/zed-industries/zed/discussions/16901
+      "enter": "project_panel::Open",
+      "o": "project_panel::NewDirectory",
+      "a": "project_panel::NewFile",
+      "r": "project_panel::Rename",
+      "x": "project_panel::Cut",
+      "y": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      "d": "project_panel::Delete",
+      // Directory expansion
+      "l": "project_panel::ExpandSelectedEntry",
+      "h": "project_panel::CollapseSelectedEntry",
+      // Move up and down
+      "j": "menu::SelectNext",
+      "k": "menu::SelectPrevious",
+
+      "ctrl-l": "project_panel::ToggleFocus", // Vim-like.
+      "/": "file_finder::Toggle"
+    }
+  }
+]
