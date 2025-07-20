@@ -15,6 +15,31 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   fi
 fi
 
+# --- Clone dotfiles repository ---
+clone_dotfiles() {
+  echo "Cloning dotfiles repository..."
+  local DOTFILES_REPO="https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git" # <<< IMPORTANT: Update this URL
+  local DOTFILES_DIR="/tmp/.dotfiles_temp" # Clone to a temporary directory
+
+  if [ -d "$DOTFILES_DIR" ]; then
+    echo "Dotfiles temporary directory already exists at $DOTFILES_DIR. Skipping cloning."
+  else
+    git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
+    if [ $? -ne 0 ]; then
+      echo "Failed to clone dotfiles repository. Exiting."
+      exit 1
+    fi
+    echo "Dotfiles repository cloned to $DOTFILES_DIR."
+  fi
+}
+
+# Main script execution flow
+# First, clone the dotfiles repository
+clone_dotfiles
+
+# Change to the dotfiles directory to ensure subsequent operations are relative to it
+cd "/tmp/.dotfiles_temp" || { echo "Failed to change directory to /tmp/.dotfiles_temp. Exiting."; exit 1; }
+
 # Runs first arg if osx, otherwise runs second arg.
 os_picker() {
   local osx_func="$1"
@@ -150,3 +175,8 @@ install_aliases() {
     local ADD_ALIASES="source ~/.bash_aliases"
     append_line_to_rc_file "$ADD_ALIASES"
 }
+
+install_aliases
+
+# Clean up the temporary dotfiles directory
+rm -rf "/tmp/.dotfiles_temp"
