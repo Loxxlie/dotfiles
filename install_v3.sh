@@ -164,7 +164,7 @@ install_television_osx() {
   brew install television
 }
 
-install_television_osx() {
+install_television_linux() {
   echo "Installing Television on Linux..."
   VER=`curl -s "https://api.github.com/repos/alexpasmantier/television/releases/latest" | grep '"tag_name":' | sed -E 's/.*"tag_name": "([^"]+)".*/\1/'`
   curl -LO https://github.com/alexpasmantier/television/releases/download/$VER/tv-$VER-x86_64-unknown-linux-musl.deb
@@ -173,6 +173,43 @@ install_television_osx() {
 }
 
 os_picker "install_television_osx" "install_television_linux"
+echo "Updating television channels..."
+tv update-channels
+if [ $? -ne 0 ]; then
+  echo "Failed to update television channels. Continuing..."
+fi
+
+# --- Install fd ---
+install_fd_osx() {
+  echo "Installing fd on macOS..."
+  brew install fd
+}
+
+install_fd_linux() {
+  echo "Installing fd on Linux..."
+  sudo apt install fd
+}
+
+os_picker "install_fd_osx" "install_fd_linux"
+
+# --- Install bat ---
+install_bat_osx() {
+  echo "Installing bat on macOS..."
+  brew install bat
+}
+
+install_bat_linux() {
+  echo "Installing bat on Linux..."
+  sudo apt install bat
+}
+
+os_picker "install_bat_osx" "install_bat_linux"
+which bat 
+if [ $? -e 0 ]; then
+    echo "Linking \"bat\" to \"batcat\"..."
+    mkdir -p ~/.local/bin
+    ln -s /usr/bin/batcat ~/.local/bin/bat
+fi
 
 # --- Add GOPATH to PATH permanently ---
 add_gopath_to_path() {
