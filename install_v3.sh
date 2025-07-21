@@ -18,7 +18,7 @@ fi
 # --- Clone dotfiles repository ---
 clone_dotfiles() {
   echo "Cloning dotfiles repository..."
-  local DOTFILES_REPO="https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git" # <<< IMPORTANT: Update this URL
+  local DOTFILES_REPO="https://github.com/Loxxlie/dotfiles.git"
   local DOTFILES_DIR="/tmp/.dotfiles_temp" # Clone to a temporary directory
 
   if [ -d "$DOTFILES_DIR" ]; then
