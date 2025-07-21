@@ -12,17 +12,17 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ import = "elie.plugins" },
-	{ import = "elie.plugins.lsp" }
+    { import = "elie.plugins" },
+    { import = "elie.plugins.lsp" }
 }, {
-	install = {
-		colorscheme = { "nightfly" },
-	},
-	checker = {
-		enabled = true,
-		notify = false,
-	},
-	change_detection = {
-		notify = false,
-	},
+    install = {
+        colorscheme = { "nightfly" },
+    },
+    checker = {
+        enabled = true,
+        notify = false,
+    },
+    change_detection = {
+        notify = false,
+    },
 })

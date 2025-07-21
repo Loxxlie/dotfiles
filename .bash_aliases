@@ -3,15 +3,16 @@
 # Git
 
 gitc() {
-    local branches=$(git branch --sort=-committerdate | fzf --header "Select a branch to checkout:")
+    local branch=$(git branch --sort=-committerdate | fzf --header "Select a branch to checkout:" | sed 's/^[* ]\{1,\}//')
 
-    if [ -z "$branches" ]; then
-        echo "No branches found."
+    if [ -z "$branch" ]; then
+        echo "No branch selected."
         return 1
     fi
 
-    git checkout "$branches"
-    echo "Checked out branch: $branches"
+    branch=$(echo "$branch" | xargs)
+    git checkout "$branch"
+    echo "Checked out branch: $branch"
 }
 
 alias gitd='git diff'
