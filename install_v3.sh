@@ -158,6 +158,22 @@ install_zed_config() {
 os_picker "install_zed_osx" "install_zed_linux"
 install_zed_config
 
+# --- Install Television ---
+install_television_osx() {
+  echo "Installing Television on macOS..."
+  brew install television
+}
+
+install_television_osx() {
+  echo "Installing Television on Linux..."
+  VER=`curl -s "https://api.github.com/repos/alexpasmantier/television/releases/latest" | grep '"tag_name":' | sed -E 's/.*"tag_name": "([^"]+)".*/\1/'`
+  curl -LO https://github.com/alexpasmantier/television/releases/download/$VER/tv-$VER-x86_64-unknown-linux-musl.deb
+  echo $VER
+  sudo dpkg -i tv-$VER-x86_64-unknown-linux-musl.deb
+}
+
+os_picker "install_television_osx" "install_television_linux"
+
 # --- Add GOPATH to PATH permanently ---
 add_gopath_to_path() {
   echo "Adding GOPATH to PATH permanently..."
